@@ -1,4 +1,4 @@
-/* Mide la distancia del sonido con el sensor ultrasónico */
+/* Mide la distancia del sonido con el sensor ultrasónico y enciende-apaga la luz Led dependiendo de dicha distancia */
 
 int trigPin = 12; 
 int echoPin = 11;
