@@ -1,9 +1,16 @@
 import SimpleOpenNI.*;
 
+import processing.serial.*;
+
+import cc.arduino.*;
+import org.firmata.*;
+
 SimpleOpenNI kinect;
 float circleSize;
 int depthMin;
 int depthMax;
+
+Arduino arduino;
 
 void setup() {
   size(640, 480);
@@ -16,6 +23,9 @@ void setup() {
   circleSize = 50;
   depthMin = Integer.MAX_VALUE;
   depthMax = 2048; // Valor máximo predefinido para mapear la profundidad
+
+  arduino = new Arduino(this, Arduino.list()[0], 57600);
+  arduino.pinMode(13, OUTPUT);
 }
 
 void draw() {
@@ -62,5 +72,10 @@ void draw() {
   textAlign(LEFT, TOP);
   textSize(100);
   text("d: " + depthValue + " mm", 100, 200);
+
+  // --- Probar la conexion con LED
+  if( mouseX > width/2 ){
+    arduino.digitalWrite( 13, HIGH );
+  }
 }
 
